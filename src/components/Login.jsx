@@ -35,7 +35,7 @@ const Login = () => {
     if (status === "authenticated") {
       router.replace("/todos");
     }
-  }, [status]);
+  }, [status,router]);
 
   return (
     <section className="text-gray-400 bg-gray-900 body-font h-full flex items-center">
