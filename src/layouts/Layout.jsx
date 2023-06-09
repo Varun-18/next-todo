@@ -1,15 +1,33 @@
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 const Layout = ({ children }) => {
   const { status } = useSession();
   const router = useRouter();
 
+  const signoutfn = async () => await signOut();
+
   const signout = async () => {
-    await signOut();
-    if (status === "unauthenticated") {
-      router.replace("/");
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to logout ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        signoutfn();
+        router.push("/");
+        Swal.fire(
+          "Success",
+          "You've have been logged out successfully .",
+          "success"
+        );
+      }
+    });
   };
 
   return (

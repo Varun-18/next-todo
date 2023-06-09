@@ -13,7 +13,7 @@ const TodoListing = () => {
 
   const getTask = async () => {
     const { data } = await axios.get("/api/getTask");
-    // console.log(data, "**** did mount ****");
+
     if (data[0]) {
       setData(data[0].taskList);
     }
