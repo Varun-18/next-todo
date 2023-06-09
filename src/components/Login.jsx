@@ -35,11 +35,11 @@ const Login = () => {
     if (status === "authenticated") {
       router.replace("/todos");
     }
-  }, [status,router]);
+  }, [status, router]);
 
   return (
-    <section className="text-gray-400 bg-gray-900 body-font h-full flex items-center">
-      <div className="mx-auto lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+    <section className="text-gray-400 bg-gray-900 body-font flex items-center">
+      <div className="mx-auto lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full sm:mt-10 md:mt-0">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="text-white text-lg font-medium title-font mb-5 ">
             Login
