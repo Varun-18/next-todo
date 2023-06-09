@@ -6,6 +6,7 @@ import Toast from "alerts/toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "yupSchema/schema";
 import { Typography } from "@mui/material";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const router = useRouter();
@@ -39,12 +40,35 @@ const Login = () => {
   };
 
   const googleSignIn = async () => {
+    const loading = toast.loading("toast is loading", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     try {
-      await signIn("google", { callbackUrl: "http://localhost:3000" });
-      router.push("http://localhost:3000/todos");
-      Toast.fire({ icon: "success", title: `Welcome ` });
+      await signIn("google", { callbackUrl: "http://localhost:3000/todos" });
+      toast.update(loading, {
+        render: "login successful",
+        type: "success",
+        isLoading: false,
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // router.push("http://localhost:3000/todos");
+      // Toast.fire({ icon: "success", title: `Welcome ` });
     } catch (error) {
-      Toast.fire({ icon: "warning", title: "please try again" });
+      // Toast.fire({ icon: "warning", title: "please try again" });
     }
   };
 
